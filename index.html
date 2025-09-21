@@ -95,3 +95,66 @@
                 Involved</button>
         </div>
     </section>
+
+    <!-- Main Section -->
+    <section class="flex flex-col md:flex-row max-w-7xl mx-auto gap-6 px-6 py-10">
+
+        <!-- Categories -->
+        <div class="hidden md:block w-60 shrink-0 sticky top-24 self-start rounded-xl shadow p-4 h-fit">
+            <h3 class="text-xl font-bold text-green-600 border-b pb-2 mb-3">Categories</h3>
+            <ul class="space-y-2 text-gray-600" id="category-list">
+                <li class="category-item cursor-pointer px-3 py-2 rounded bg-green-700 text-white">All Trees</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Fruit Tree</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Shade Tree</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Medicinal Tree</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Timber Tree</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Evergreen Tree</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Ornamental Plant</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Bamboo</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Climber</li>
+                <li class="category-item cursor-pointer px-3 py-2 rounded hover:bg-green-100">Aquatic Plant</li>
+            </ul>
+        </div>
+
+        <!-- Mobile Categories -->
+        <div class="md:hidden mb-4">
+            <select id="mobileCategory" class="w-full p-2 border rounded-lg">
+                <option>All Trees</option>
+                <option>Fruit Tree</option>
+                <option>Flowering Tree</option>
+                <option>Shade Tree</option>
+                <option>Medicinal Tree</option>
+                <option>Timber Tree</option>
+                <option>Evergreen Tree</option>
+                <option>Ornamental Plant</option>
+                <option>Bamboo</option>
+                <option>Climber</option>
+                <option>Aquatic Plant</option>
+            </select>
+        </div>
+
+        <!-- Plants Grid -->
+        <div class="flex-1 min-w-0">
+            <h2 class="text-2xl font-serif text-green-700 mb-6">Available Trees</h2>
+            <div class="spinner hidden border-4 border-gray-200 border-t-green-700 rounded-full w-10 h-10 mx-auto my-5"
+                id="loading-spinner"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="plants-grid"></div>
+        </div>
+
+        <!-- Cart -->
+        <div class="hidden md:block w-72 shrink-0 sticky top-24 self-start bg-white rounded-xl shadow p-4 h-fit">
+            <h3 class="text-lg font-semibold text-green-700 border-b pb-2 mb-4 text-center">Your Cart</h3>
+            <div class="custom-scroll max-h-64 overflow-y-auto space-y-3 text-sm mb-4" id="cart-items">
+                <p class="text-center text-gray-500">Your cart is empty</p>
+            </div>
+            <div class="flex justify-between font-semibold mt-4 text-green-700 text-lg border-t pt-4">
+                <span>Total:</span><span id="cart-total">৳0</span>
+            </div>
+            <div class="flex justify-between font-semibold mt-2 text-green-700 text-lg">
+                <span>Number of Trees:</span><span id="cart-count">0</span>
+            </div>
+            <button
+                class="mt-4 bg-green-700 hover:bg-green-800 text-white py-2 w-full rounded-lg font-semibold">Proceed
+                to Checkout</button>
+        </div>
+    </section>
