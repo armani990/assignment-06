@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Earth</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #4ade80;
+            border-radius: 10px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+
+        /* Spinner Animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-green-700 shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+            <div class="flex items-center gap-2">
+                🌱
+                <span class="font-bold text-xl text-white">Green Earth</span>
+            </div>
+            <ul class="hidden md:flex gap-6 font-medium text-gray-600">
+                <li><a href="#" class="text-white hover:text-black">Home</a></li>
+                <li><a href="#about" class="text-white hover:text-black">About</a></li>
+                <li><a href="#impact" class="text-white hover:text-black">Impact</a></li>
+                <li><a href="#form" class="text-white hover:text-black">Plant a Tree</a></li>
+            </ul>
+            <button id="menu-btn" class="md:hidden text-white text-2xl"><i class="fas fa-bars"></i></button>
+            <button
+                class="hidden md:block bg-white text-green-600 hover:bg-green-600 hover:text-white px-5 py-2 rounded-full font-semibold">
+                Plant A Tree
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <ul class="flex flex-col p-4 gap-4 text-gray-600">
+                <li><a href="#" class="hover:text-green-700">Home</a></li>
+                <li><a href="#about" class="hover:text-green-700">About</a></li>
+                <li><a href="#impact" class="hover:text-green-700">Impact</a></li>
+                <li><a href="#form" class="hover:text-green-700">Plant a Tree</a></li>
+            </ul>
+        </div>
+    </nav>
