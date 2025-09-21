@@ -79,3 +79,109 @@ function displayPlants(plants) {
   });
 }
 
+function addToCart(plant) {
+  const item = cart.find(i => i.id === plant.id);
+  item ? item.quantity++ : cart.push({ ...plant, quantity: 1 });
+  totalPrice += plant.price;
+  updateCart();
+}
+
+function removeFromCart(id) {
+  const idx = cart.findIndex(i => i.id == id);
+  if (idx > -1) {
+    totalPrice -= cart[idx].price * cart[idx].quantity;
+    cart.splice(idx, 1);
+    updateCart();
+  }
+}
+
+function updateCart() {
+  const renderItems = (container, isMobile = false) => {
+    container.innerHTML = cart.length
+      ? ""
+      : '<p class="text-center text-gray-500">Your cart is empty</p>';
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "flex justify-between items-center py-2 border-b";
+      div.innerHTML = `
+        <div>
+          <div class="font-medium">${item.name}</div>
+          <div class="text-green-700 text-sm">$${item.price} x ${item.quantity}</div>
+        </div>
+        <button class="text-red-500 remove" data-id="${item.id}"><i class="fas fa-times"></i></button>
+      `;
+      container.appendChild(div);
+    });
+    container.querySelectorAll(".remove").forEach(b => b.onclick = () => removeFromCart(b.dataset.id));
+
+    if (isMobile) {
+      mobileCartTotal.textContent = "$" + totalPrice;
+      mobileCartNum.textContent = cart.reduce((a, c) => a + c.quantity, 0);
+      mobileCartCount.textContent = mobileCartNum.textContent;
+    }
+  };
+
+  renderItems(cartItems);
+  renderItems(mobileCartItems, true);
+
+  cartTotal.textContent = "$" + totalPrice;
+  cartCount.textContent = cart.reduce((a, c) => a + c.quantity, 0);
+}
+
+function showLoading(show) {
+  loadingSpinner.classList.toggle('hidden', !show);
+}
+
+categoryItems.forEach(item => {
+  item.onclick = () => {
+    categoryItems.forEach(i => i.classList.remove('bg-green-700', 'text-white'));
+    item.classList.add('bg-green-700', 'text-white');
+    loadPlantsByCategory(item.textContent.trim());
+  };
+});
+mobileCategory.onchange = () => loadPlantsByCategory(mobileCategory.value);
+
+// --- Modal Functionality ---
+const plantModal = document.getElementById("plantModal");
+const modalImage = document.getElementById("modalImage");
+const modalName = document.getElementById("modalName");
+const modalDescription = document.getElementById("modalDescription");
+const closeModal = document.getElementById("closeModal");
+
+function addModalEvents() {
+  document.querySelectorAll("#plants-grid h3").forEach(h3 => {
+    h3.onclick = () => {
+      const card = h3.closest("div.flex.flex-col");
+      const plantName = h3.textContent;
+      const plant = allPlants.find(p => p.name === plantName);
+
+      if (plant) {
+        modalImage.src = plant.image;
+        modalName.textContent = plant.name;
+        modalDescription.textContent = plant.description || "No description available";
+        plantModal.classList.remove("hidden");
+        plantModal.classList.add("flex");
+      }
+    };
+  });
+}
+
+closeModal.onclick = () => {
+  plantModal.classList.add("hidden");
+  plantModal.classList.remove("flex");
+};
+
+plantModal.onclick = (e) => {
+  if (e.target === plantModal) {
+    plantModal.classList.add("hidden");
+    plantModal.classList.remove("flex");
+  }
+};
+
+const originalDisplayPlants = displayPlants;
+displayPlants = (plants) => {
+  originalDisplayPlants(plants);
+  addModalEvents();
+};
+
+loadAllPlants();
