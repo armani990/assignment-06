@@ -106,7 +106,7 @@ function updateCart() {
       div.innerHTML = `
         <div>
           <div class="font-medium">${item.name}</div>
-          <div class="text-green-700 text-sm">$${item.price} x ${item.quantity}</div>
+          <div class="text-green-700 text-sm">৳${item.price} x ${item.quantity}</div>
         </div>
         <button class="text-red-500 remove" data-id="${item.id}"><i class="fas fa-times"></i></button>
       `;
@@ -115,7 +115,7 @@ function updateCart() {
     container.querySelectorAll(".remove").forEach(b => b.onclick = () => removeFromCart(b.dataset.id));
 
     if (isMobile) {
-      mobileCartTotal.textContent = "$" + totalPrice;
+      mobileCartTotal.textContent = "৳" + totalPrice;
       mobileCartNum.textContent = cart.reduce((a, c) => a + c.quantity, 0);
       mobileCartCount.textContent = mobileCartNum.textContent;
     }
@@ -124,7 +124,7 @@ function updateCart() {
   renderItems(cartItems);
   renderItems(mobileCartItems, true);
 
-  cartTotal.textContent = "$" + totalPrice;
+  cartTotal.textContent = "৳" + totalPrice;
   cartCount.textContent = cart.reduce((a, c) => a + c.quantity, 0);
 }
 
